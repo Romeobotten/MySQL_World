@@ -34,8 +34,16 @@ public class App {  // Hello Cities in the WORLD
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("-------------------------------------------");
         System.out.println(CityDaoJDBC.findById(3048).toString());
-        City vxo = new City(4599, "Vaxjoe","SWE","Kronoberg", 95477);
+        City vxo = new City(4599, "Vaxjoe","SWE","Kronoberg", 94577);
+
         CityDaoJDBC.add(vxo);
+        System.out.println("-------------------------------------------");
+        System.out.println(CityDaoJDBC.findById(4599).toString());
+
+        CityDaoJDBC.delete(vxo);
+        System.out.println("-------------------------------------------");
+        System.out.println(CityDaoJDBC.findById(4599).toString());
     }
 }
