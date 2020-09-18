@@ -11,20 +11,29 @@ public class App {  // Hello Cities in the WORLD
 
         City vxo = new City(4599, "Vaxjoe","SWE","Kronoberg", 94577);
 
-        CityDaoJDBC.add(vxo); // Insert Växjö into the World
+        if (CityDaoJDBC.add(vxo) == vxo) {
+            System.out.println("City added to database");
+            // Insert Växjö into the World
+        }
         System.out.println("-------------------------------------------");
         System.out.println(CityDaoJDBC.findById(4599).toString());
         System.out.println("-------------------------------------------");
         vxo.setName("Växjö");
         vxo.setDistrict("Småland");
-        CityDaoJDBC.update(vxo); // ÅÄÖ working ok
+        if (CityDaoJDBC.update(vxo) == vxo) {
+            System.out.println("Update OK");
+        } // ÅÄÖ working ok
 
         CityDaoJDBC.findByCode("SWE").forEach(System.out::println); // All Swedish towns, including Växjö
         System.out.println("-------------------------------------------");
         CityDaoJDBC.findByName("%ping").forEach(System.out::println); // Some cities in Asia and Sweden
 
         System.out.println("-------------------------------------------");
-        CityDaoJDBC.delete(vxo);
+        if (CityDaoJDBC.delete(vxo) == 1) {
+            System.out.println("City deleted OK");
+        } else {
+            System.out.println("Error: nothing happened");
+        }
 
         System.out.println(CityDaoJDBC.findById(4599).toString()); // Vaxjo is no more
     }
